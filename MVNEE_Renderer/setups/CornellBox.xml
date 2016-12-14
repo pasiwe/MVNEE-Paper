@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<scene version="1.4.0">
+	<integrator type="PATH_TRACING_MVNEE_FINAL">
+	<!--<integrator type="PATH_TRACING_NEE_MIS">-->
+		<output sessionName="Cornell_mvnee" width="350" height="350"/>
+		<rendering type="maxSamples" spp="100"/>
+		<!--<rendering type="maxDuration" maxDuration="30.0"/>-->
+		<!-- Stopping criteria for all paths: max path length -->
+		<maxPathSegments value="25"/>		
+		<!-- Maximum expected segment count for MVNEE -->
+		<MESC value="4"/>
+		<!-- Specify maximum thread count! -->
+		<threads count="8"/>
+		
+		<!-- Specify light source choice strategy:
+			Use one of the following: UNIFORM, INTENSITY_BASED, INTENSITY_DISTANCE_BASED
+		-->
+		<lightChoiceStrategy type="UNIFORM"/>
+	</integrator>
+
+	<camera type="perspective">		
+		<distanceToImagePlane value="1.0"/>
+		<imagePlaneWidth value="1.0"/>
+		<imagePlaneHeight value="1.0"/>
+		<lookAt origin="2.78 2.73 -4.00" target="2.78 2.73 7.00" up="0 1 0"/>
+	</camera>
+	
+	<lightsource type="lightdisk">
+		<position center="2.78 5.48 2.79" normal="0 -1 0"/>		
+		<radius value="0.5"/>
+		<brightness value="40.0"/>
+		<color value="1.0 1.0 1.0"/>
+	</lightsource>
+	
+	<!--
+	<lightsource type="spotlight">
+		<position center="1.78 5.48 2.79" normal="0 -1 0"/>
+		<radius value="0.8"/>
+		<brightness value="65.0"/>
+		<color value="1.0 1.0 1.0"/>
+		<cosExponent value="18.0"/>
+	</lightsource>
+	-->
+	
+	<medium type="homogeneous">		
+		<coefficients mu_s="1.0" mu_a="0.0"/>
+		<phaseFunction type="Henyey-Greenstein" g="0.9"/>
+	</medium>
+
+	<model type="obj" name="cbox_back">
+		<filename value="../models/cornellbox/cbox_back.obj"/>		
+		<transform translate="0 0 0" scale="0.01" flipZ="false" flipVertexOrder="true"/>
+		<material type="diffuse" albedo="0.15 0.15 0.15"/>
+	</model>
+	
+	
+	<model type="obj" name="cbox_ceiling">
+		<filename value="../models/cornellbox/cbox_ceiling.obj"/>		
+		<transform translate="0 0 0" scale="0.01" flipZ="false" flipVertexOrder="true"/>
+		<material type="diffuse" albedo="1 1 1"/>
+	</model>
+	
+	<model type="obj" name="cbox_floor">
+		<filename value="../models/cornellbox/cbox_floor.obj"/>		
+		<transform translate="0 0 0" scale="0.01" flipZ="false" flipVertexOrder="true"/>
+		<material type="diffuse" albedo="0.15 0.15 0.15"/>
+	</model>
+	
+	<model type="obj" name="cbox_greenwall">
+		<filename value="../models/cornellbox/cbox_greenwall.obj"/>		
+		<transform translate="0 0 0" scale="0.01" flipZ="false" flipVertexOrder="true"/>
+		<material type="diffuse" albedo="0.05 0.4 0.05"/>
+	</model>
+	
+	<model type="obj" name="cbox_redwall">
+		<filename value="../models/cornellbox/cbox_redwall.obj"/>		
+		<transform translate="0 0 0" scale="0.01" flipZ="false" flipVertexOrder="true"/>
+		<material type="diffuse" albedo="0.4 0.05 0.05"/>
+	</model>
+	
+</scene>

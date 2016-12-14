@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<scene version="1.4.0">
+	<integrator type="PATH_TRACING_NEE_MIS">
+	<!--<integrator type="PATH_TRACING_MVNEE_FINAL">-->
+		<output sessionName="meanCosineComparison_nee_06" width="256" height="256"/>
+		<!--<rendering type="liveProgress" spp="200"/>-->
+		<rendering type="maxDuration" maxDuration="15.0"/>
+		<!-- Stopping criteria for all paths: max path length -->
+		<maxPathSegments value="15"/>		
+		<!-- Maximum expected segment count for MVNEE -->
+		<MESC value="4"/>
+		<!-- Specify maximum thread count! -->
+		<threads count="8"/>
+		
+		<!-- Specify light source choice strategy:
+			Use one of the following: UNIFORM, INTENSITY_BASED, INTENSITY_DISTANCE_BASED
+		-->
+		<lightChoiceStrategy type="INTENSITY_BASED"/>
+	</integrator>
+
+	<camera type="perspective">		
+		<distanceToImagePlane value="1.0"/>
+		<imagePlaneWidth value="1.0"/>
+		<imagePlaneHeight value="1.0"/>
+		<lookAt origin="0 0 0.0" target="0 0 1.0" up="0 1 0"/>
+	</camera>
+	
+	<lightsource type="lightdisk">
+		<position center="0 0 5" normal="0 0 -1"/>
+		<radius value="0.5"/>
+		<brightness value="80"/>
+		<color value="1.0 1.0 1.0"/>
+	</lightsource>
+
+	<medium type="homogeneous">		
+		<coefficients mu_s="1.7" mu_a="0.0"/>
+		<phaseFunction type="Henyey-Greenstein" g="0.6"/>
+	</medium>
+
+	
+</scene>

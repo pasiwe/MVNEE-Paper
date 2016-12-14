@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<scene version="1.4.0">
+	<!--<integrator type="PATH_TRACING_NEE_MIS">-->
+	<integrator type="PATH_TRACING_MVNEE_FINAL">
+		<output sessionName="teaserSponza_nee" width="600" height="270"/>
+		<!--<rendering type="maxSamples" spp="200"/>-->
+		<rendering type="maxDuration" maxDuration="2.0"/>
+		<!-- Stopping criteria for all paths: max path length -->
+		<maxPathSegments value="30"/>		
+		<!-- Maximum expected segment count for MVNEE -->
+		<MESC value="6"/>
+		<!-- Specify maximum thread count! -->
+		<threads count="8"/>
+		
+		<!-- Specify light source choice strategy:
+			Use one of the following: UNIFORM, INTENSITY_BASED, INTENSITY_DISTANCE_BASED
+		-->
+		<lightChoiceStrategy type="INTENSITY_DISTANCE_BASED"/>
+	</integrator>
+
+	<camera type="perspective">		
+		<distanceToImagePlane value="1.0"/>
+		<imagePlaneWidth value="1.2"/>
+		<imagePlaneHeight value="0.54"/>
+		<lookAt origin="0.0 10.0 -13.00" target="0 13.5 1" up="0 1 0"/>
+	</camera>
+	
+	<!-- blue light -->
+	<lightsource type="lightdisk">
+		<position center="0 10 20" normal="0 1 -1"/>
+		<radius value="2.0"/>
+		<brightness value="180.0"/>
+		<color value="0.1 0.1 1.0"/>
+	</lightsource>
+	
+	<!-- green light -->
+	<lightsource type="lightdisk">
+		<position center="-7.0 11.0 -4.0" normal="1 0.2 -0.1"/>
+		<radius value="1.5"/>
+		<brightness value="80.0"/>
+		<color value="0.1 1.0 0.1"/>
+	</lightsource>
+	
+	<!-- red light -->
+	<lightsource type="lightdisk">
+		<position center="7.0 11.0 3.0" normal="-1 0.2 -0.1"/>
+		<radius value="1.5"/>
+		<brightness value="120.0"/>
+		<color value="1.0 0.1 0.1"/>
+	</lightsource>
+	
+	
+	<medium type="homogeneous">		
+		<coefficients mu_s="0.2" mu_a="0.0"/>
+		<phaseFunction type="Henyey-Greenstein" g="0.9"/>
+	</medium>
+
+
+	<model type="obj" name="sponza">
+		<filename value="../models/sponza_one_object_small_rot-90.obj"/>		
+		<transform translate="0 0 0" scale="0.5" flipZ="false" flipVertexOrder="true"/>
+		<material type="diffuse" albedo="0.3 0.3 0.3"/>
+	</model>
+	
+		
+</scene>

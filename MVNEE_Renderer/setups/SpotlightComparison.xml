@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<scene version="1.4.0">
+	<integrator type="PATH_TRACING_MVNEE_FINAL">
+	<!--<integrator type="PATH_TRACING_NEE_MIS">-->
+	<!--<integrator type="PATH_TRACING_MVNEE_LIGHT_IMPORTANCE_SAMPLING_IMPROVED">-->
+		<output sessionName="spotlightComparisonFinal2_MVNEE4" width="400" height="400"/>
+		
+		<!--<rendering type="maxSamples" spp="100"/>-->
+		<rendering type="maxDuration" maxDuration="1.0"/> <!-- duration in minutes -->
+		<!-- Stopping criteria for all paths: max path length -->
+		<maxPathSegments value="20"/>		
+		<!-- Maximum expected segment count for MVNEE -->
+		<MESC value="4"/>
+		<!-- Specify maximum thread count! -->
+		<threads count="8"/>
+		
+		<!-- Specify light source choice strategy:
+			Use one of the following: UNIFORM, INTENSITY_BASED, INTENSITY_DISTANCE_BASED
+		-->
+		<lightChoiceStrategy type="INTENSITY_BASED"/>
+	</integrator>
+
+	<camera type="perspective">		
+		<distanceToImagePlane value="1.0"/>
+		<imagePlaneWidth value="1.0"/>
+		<imagePlaneHeight value="1.0"/>
+		<lookAt origin="0 0 -2" target="0 0 1.0" up="0 1 0"/>
+	</camera>
+	
+	<lightsource type="spotlight">
+		<position center="3.0 6.7 4" normal="-0.8 -2 0"/>
+		<radius value="0.4"/>
+		<brightness value="220.0"/>
+		<color value="1.0 1.0 1.0"/>
+		<cosExponent value="50"/>
+	</lightsource>
+	
+	<medium type="homogeneous">		
+		<coefficients mu_s="0.4" mu_a="0.0"/>
+		<phaseFunction type="Henyey-Greenstein" g="0.9"/>
+	</medium>
+
+	<model type="plane" name="groundPlane">
+		<transform y="-2" scale="50.0"/>
+		<material type="diffuse" albedo="0.2 0.2 0.8"/>
+	</model>	
+	
+	<model type="obj" name="redsphere">
+		<filename value="../models/sphereHighRes.obj"/>		
+		<transform translate="0.8 0.8 4" scale="0.38" flipZ="false" flipVertexOrder="true"/>
+		<material type="diffuse" albedo="1.0 0.1 0.1"/>
+	</model>
+	
+	<model type="obj" name="bluebackwall">
+		<filename value="../models/walls/backwall.obj"/>		
+		<transform translate="0 0 8" scale="10" flipZ="false" flipVertexOrder="true"/>
+		<material type="diffuse" albedo="0.1 0.1 1.0"/>
+	</model>
+	
+	<model type="obj" name="blueleftwall">
+		<filename value="../models/walls/sidewall.obj"/>		
+		<transform translate="-4 0 0" scale="10" flipZ="false" flipVertexOrder="true"/>
+		<material type="diffuse" albedo="0.1 0.1 1.0"/>
+	</model>
+	
+</scene>

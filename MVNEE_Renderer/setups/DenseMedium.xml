@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<scene version="1.4.0">
+	<integrator type="PATH_TRACING_MVNEE_FINAL">
+	<!--<integrator type="PATH_TRACING_NEE_MIS">-->
+	<!--<integrator type="PATH_TRACING_NEE_MIS_NO_SCATTERING">-->
+		<output sessionName="denseMedium_mvnee" width="256" height="256"/>
+		<!--<rendering type="liveProgress" spp="200"/>-->
+		<rendering type="maxDuration" maxDuration="2.0"/>
+		<!-- Stopping criteria for all paths: max path length -->
+		<maxPathSegments value="30"/>		
+		<!-- Maximum expected segment count for MVNEE -->
+		<MESC value="4"/>
+		<!-- Specify maximum thread count! -->
+		<threads count="8"/>
+		
+		<!-- Specify light source choice strategy:
+			Use one of the following: UNIFORM, INTENSITY_BASED, INTENSITY_DISTANCE_BASED
+		-->
+		<lightChoiceStrategy type="INTENSITY_BASED"/>
+	</integrator>
+
+	<camera type="perspective">		
+		<distanceToImagePlane value="1.0"/>
+		<imagePlaneWidth value="1.0"/>
+		<imagePlaneHeight value="1.0"/>
+		<lookAt origin="0 0.1 -3.0" target="0 0.1 1.0" up="0 1 0"/>
+	</camera>
+	
+	<lightsource type="lightdisk">
+		<position center="0 1.5 1" normal="0 -1 0"/>
+		<radius value="0.2"/>
+		<brightness value="140.0"/>
+		<color value="1.0 1.0 1.0"/>
+	</lightsource>
+	
+	<medium type="homogeneous">		
+		<coefficients mu_s="2.0" mu_a="0.0"/>
+		<phaseFunction type="Henyey-Greenstein" g="0.9"/>
+	</medium>
+
+	<model type="plane" name="groundPlane">
+		<transform y="-1" scale="10.0"/>
+		<material type="diffuse" albedo="0.3 0.8 0.3"/>
+	</model>	
+	
+	<model type="obj" name="lochplatte">
+		<filename value="../models/lochplatte/LochInMitte.obj"/>		
+		<transform translate="0 0.8 0" scale="1.0" flipZ="true" flipVertexOrder="true"/>
+		<material type="diffuse" albedo="0.1 0.1 0.1"/>
+	</model>
+	
+</scene>
