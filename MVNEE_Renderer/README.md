@@ -5,7 +5,7 @@ This is a Volume Rendering Tool for simple scenes in participating media,
 featuring Random Walk Path Tracing, NEE and Multiple Vertex Next Event Estimation in different versions.
 It is a subset of the code used for the Paper "Multiple Vertex Next Event Estimation". The code for
 heterogeneous media can't be published, but everything else is provided in this repository.
-------------------------
+
 
 ------------------------
 Installation Guide
